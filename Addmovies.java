@@ -18,13 +18,20 @@ public class Addmovies<T> {
         info.add(information);
     }
 
-    public void displaymovies() {
-        System.out.print("{");
-        for (T movie : movies) {
-            System.out.print(movie + " ");
-        }
-        System.out.print("}");
+    public void displayMovies() {
+    // Top border
+    System.out.println("+----------------------+");
+    System.out.println("|       Movies         |");
+    System.out.println("+----------------------+");
+
+    for (T movie : movies) {
+        System.out.printf("| %-20s |\n", movie);  // Left-aligned in 20-char width
     }
+
+    // Bottom border
+    System.out.println("+----------------------+");
+}
+
 
     public T getMoviesInfo(int index) {
         return info.get(index);

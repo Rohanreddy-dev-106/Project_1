@@ -1,10 +1,11 @@
 import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) {
         Addmovies<String> mov = new Addmovies<>();
         Scanner sc = new Scanner(System.in);
 
-        // Add  movies initially
+        // Add movies initially
         mov.addMovie("RRR");
         mov.addInfo("This movie is about friendship and freedom fighters.");
         mov.addMovie("Inception");
@@ -21,36 +22,39 @@ public class App {
             System.out.println("\n--- Movie Menu ---");
             System.out.println("1. Display Movies");
             System.out.println("2. View Movie Info");
-            System.out.println("3. Show Total Movies");
+            System.out.println("3. Show Recomended Movies");
             System.out.println("4. Search movie by title");
-            System.out.println("5. Watch Queue");
-            System.out.println("6. Watch History");
-            System.out.println("7. Sort movies by rating");
+            System.out.println("5.Select Movie to watch From Display Movies");
+            System.out.println("6.Select to Watch Movies Which is Recomended");
+            System.out.println("7. Watch History");
+            System.out.println("8.Watch Later Queue");
+            System.out.println("9. Sort movies by rating");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
-            sc.nextLine(); 
+            sc.nextLine();
 
             switch (choice) {
                 case 1:
-                    mov.displaymovies();
+                    mov.displayMovies();;
                     break;
 
                 case 2:
-                    mov.displaymovies();
+                    mov.displayMovies();;
                     System.out.print("Enter index to view info: ");
                     int index = sc.nextInt();
                     sc.nextLine();
-                    System.out.println("Info: " + mov.getMoviesInfo(index-1));
+                    System.out.println("Info: " + mov.getMoviesInfo(index - 1));
                     break;
 
                 case 3:
-                 
+                    SuggestMovies suggest = new SuggestMovies();
+                    suggest.printRecommendedMoviesList();
                     break;
 
                 case 4:
                     System.out.print("Enter title to search: ");
-                    
+
                     break;
 
                 case 5:
