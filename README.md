@@ -23,7 +23,7 @@ A **Java-based Movie Management System** that demonstrates the use of **Data Str
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/MovieManagementSystem.git
+ https://github.com/Rohanreddy-dev-106/Project_1.git
 
 📚 Data Structures & Algorithms Used
 Linked List → Recommended Movies
