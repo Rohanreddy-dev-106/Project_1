@@ -19,11 +19,11 @@ A **Java-based Movie Management System** that demonstrates the use of **Data Str
 
 ---
 
-##  How to Run
+## 🚀 How to Run
 
 1. Clone this repository:
    ```bash
- https://github.com/Rohanreddy-dev-106/Project_1.git
+   git clone https://github.com/Rohanreddy-dev-106/Project_1.git
 
 📚 Data Structures & Algorithms Used
 Linked List → Recommended Movies
@@ -38,5 +38,4 @@ Searching Algorithms → Linear Search, Binary Search
 
 📝 Author
 Rohan Reddy
-
 Web Developer | DSA Enthusiast.
