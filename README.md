@@ -38,4 +38,5 @@ Searching Algorithms → Linear Search, Binary Search
 
 📝 Author
 Rohan Reddy
+
 Web Developer | DSA Enthusiast.
