@@ -30,7 +30,7 @@ public class SuggestMovies {
 
   public void printRecommendedMoviesList() {
     Node<String, String, Integer, String> current = head;
-    System.out.println("+----------------------+-------+----------------+");
+    System.out.println("+---------------------+-------+----------------+");
     System.out.println("|        Title         | Year  |      Genre     |");
     System.out.println("+----------------------+-------+----------------+");
 
