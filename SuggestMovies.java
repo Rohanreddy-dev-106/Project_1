@@ -30,13 +30,13 @@ public class SuggestMovies {
 
   public void printRecommendedMoviesList() {
     Node<String, String, Integer, String> current = head;
-    System.out.println("+----------------------+------ +----------------+");
-    System.out.println("|        Title         | Year  |      Genre      |");
+    System.out.println("+----------------------+-------+----------------+");
+    System.out.println("|        Title         | Year  |      Genre     |");
     System.out.println("+----------------------+-------+----------------+");
 
     while (current != null) {
         System.out.printf("| %-20s | %-5d | %-14s |\n",
-                current.title, current.year, current.joner);
+                current.title, current.year, current.genre);
         current = current.next;
     }
 
