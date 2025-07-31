@@ -101,7 +101,8 @@ public class App {
                                 System.out.println("Used: Binary Search");
                                 break;
                             case 3:
-                                System.out.println("BST Search - Feature available in MovieBST class");
+                                foundMovie = movieManager.bstSearch(searchTitle);
+                                System.out.println("Used: BST Search");
                                 break;
                         }
                         
@@ -112,7 +113,7 @@ public class App {
                             System.out.println(foundMovie.getDetailedInfo());
                             System.out.printf("🕒 Search time: %.2f microseconds\n", 
                                             (endTime - startTime) / 1000.0);
-                        } else if (searchChoice != 3) {
+                        } else {
                             System.out.println("❌ Movie not found!");
                         }
                     } catch (Exception e) {
@@ -282,9 +283,48 @@ public class App {
                     break;
 
                 case 12:
-                    System.out.println("BST Operations - Movies in alphabetical order:");
-                    // This will display movies from BST in order
-                    System.out.println("Feature available in MovieBST class");
+                    System.out.println("\nBST Operations:");
+                    System.out.println("1. Display Movies in Alphabetical Order");
+                    System.out.println("2. Search Movie using BST");
+                    System.out.print("Choose BST operation: ");
+                    
+                    try {
+                        int bstChoice = sc.nextInt();
+                        sc.nextLine();
+                        
+                        switch (bstChoice) {
+                            case 1:
+                                movieManager.displayBSTInOrder();
+                                break;
+                            case 2:
+                                System.out.print("Enter movie title to search in BST: ");
+                                String bstSearchTitle = sc.nextLine();
+                                
+                                if (bstSearchTitle.trim().isEmpty()) {
+                                    System.out.println("❌ Please enter a movie title!");
+                                    break;
+                                }
+                                
+                                long bstStartTime = System.nanoTime();
+                                Movie bstFoundMovie = movieManager.bstSearch(bstSearchTitle);
+                                long bstEndTime = System.nanoTime();
+                                
+                                if (bstFoundMovie != null) {
+                                    System.out.println("✅ Movie Found in BST!");
+                                    System.out.println(bstFoundMovie.getDetailedInfo());
+                                    System.out.printf("🕒 BST Search time: %.2f microseconds\n", 
+                                                    (bstEndTime - bstStartTime) / 1000.0);
+                                } else {
+                                    System.out.println("❌ Movie not found in BST!");
+                                }
+                                break;
+                            default:
+                                System.out.println("❌ Invalid BST operation choice!");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("❌ Invalid input! Please try again.");
+                        sc.nextLine();
+                    }
                     break;
 
                 case 0:

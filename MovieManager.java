@@ -86,6 +86,16 @@ public class MovieManager {
         return null;
     }
     
+    // BST Search
+    public Movie bstSearch(String title) {
+        return movieBST.search(title);
+    }
+    
+    // Display BST in alphabetical order
+    public void displayBSTInOrder() {
+        movieBST.displayInOrder();
+    }
+    
     // Bubble Sort
     public void bubbleSortByRating() {
         int n = movies.size();
