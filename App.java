@@ -125,15 +125,20 @@ public class App {
                 case 5:
                     movieManager.displayMovies();
                     System.out.print("Enter movie number to watch: ");
-                    int watchIndex = sc.nextInt();
-                    sc.nextLine();
-                    Movie movieToWatch = movieManager.getMovie(watchIndex - 1);
-                    if (movieToWatch != null) {
-                        movieManager.addToWatchHistory(movieToWatch);
-                        System.out.println("🎬 Now watching: " + movieToWatch.getTitle());
-                        System.out.println("Enjoy your movie!");
-                    } else {
-                        System.out.println("Invalid movie number!");
+                    try {
+                        int watchIndex = sc.nextInt();
+                        sc.nextLine(); // consume newline
+                        Movie movieToWatch = movieManager.getMovie(watchIndex - 1);
+                        if (movieToWatch != null) {
+                            movieManager.addToWatchHistory(movieToWatch);
+                            System.out.println("🎬 Now watching: " + movieToWatch.getTitle());
+                            System.out.println("Enjoy your movie!");
+                        } else {
+                            System.out.println("Invalid movie number!");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("❌ Invalid input! Please enter a valid movie number.");
+                        sc.nextLine(); // clear invalid input
                     }
                     break;
 
