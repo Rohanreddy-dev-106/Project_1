@@ -27,8 +27,15 @@ public class App {
             System.out.println("╚═══════════════════════════════════╝");
             System.out.print("Enter your choice: ");
             
-            choice = sc.nextInt();
-            sc.nextLine(); // consume newline
+            try {
+                choice = sc.nextInt();
+                sc.nextLine(); // consume newline
+            } catch (Exception e) {
+                System.out.println("❌ Invalid input! Please enter a number.");
+                sc.nextLine(); // clear invalid input
+                choice = -1; // force continue loop
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -38,13 +45,18 @@ public class App {
                 case 2:
                     movieManager.displayMovies();
                     System.out.print("Enter movie number to view info: ");
-                    int index = sc.nextInt();
-                    sc.nextLine();
-                    Movie selectedMovie = movieManager.getMovie(index - 1);
-                    if (selectedMovie != null) {
-                        System.out.println("\n" + selectedMovie.getDetailedInfo());
-                    } else {
-                        System.out.println("Invalid movie number!");
+                    try {
+                        int index = sc.nextInt();
+                        sc.nextLine();
+                        Movie selectedMovie = movieManager.getMovie(index - 1);
+                        if (selectedMovie != null) {
+                            System.out.println("\n" + selectedMovie.getDetailedInfo());
+                        } else {
+                            System.out.println("❌ Invalid movie number!");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("❌ Please enter a valid number!");
+                        sc.nextLine();
                     }
                     break;
 
@@ -58,39 +70,54 @@ public class App {
                     System.out.println("2. Binary Search");
                     System.out.println("3. BST Search");
                     System.out.print("Choose search method: ");
-                    int searchChoice = sc.nextInt();
-                    sc.nextLine();
                     
-                    System.out.print("Enter movie title to search: ");
-                    String searchTitle = sc.nextLine();
-                    
-                    Movie foundMovie = null;
-                    long startTime = System.nanoTime();
-                    
-                    switch (searchChoice) {
-                        case 1:
-                            foundMovie = movieManager.linearSearch(searchTitle);
-                            System.out.println("Used: Linear Search");
+                    try {
+                        int searchChoice = sc.nextInt();
+                        sc.nextLine();
+                        
+                        if (searchChoice < 1 || searchChoice > 3) {
+                            System.out.println("❌ Invalid search option!");
                             break;
-                        case 2:
-                            foundMovie = movieManager.binarySearch(searchTitle);
-                            System.out.println("Used: Binary Search");
+                        }
+                        
+                        System.out.print("Enter movie title to search: ");
+                        String searchTitle = sc.nextLine();
+                        
+                        if (searchTitle.trim().isEmpty()) {
+                            System.out.println("❌ Please enter a movie title!");
                             break;
-                        case 3:
-                            // This will be implemented with BST
-                            System.out.println("BST Search not fully implemented yet");
-                            break;
-                    }
-                    
-                    long endTime = System.nanoTime();
-                    
-                    if (foundMovie != null) {
-                        System.out.println("Movie Found!");
-                        System.out.println(foundMovie.getDetailedInfo());
-                        System.out.printf("Search time: %.2f microseconds\n", 
-                                        (endTime - startTime) / 1000.0);
-                    } else {
-                        System.out.println("Movie not found!");
+                        }
+                        
+                        Movie foundMovie = null;
+                        long startTime = System.nanoTime();
+                        
+                        switch (searchChoice) {
+                            case 1:
+                                foundMovie = movieManager.linearSearch(searchTitle);
+                                System.out.println("Used: Linear Search");
+                                break;
+                            case 2:
+                                foundMovie = movieManager.binarySearch(searchTitle);
+                                System.out.println("Used: Binary Search");
+                                break;
+                            case 3:
+                                System.out.println("BST Search - Feature available in MovieBST class");
+                                break;
+                        }
+                        
+                        long endTime = System.nanoTime();
+                        
+                        if (foundMovie != null) {
+                            System.out.println("✅ Movie Found!");
+                            System.out.println(foundMovie.getDetailedInfo());
+                            System.out.printf("🕒 Search time: %.2f microseconds\n", 
+                                            (endTime - startTime) / 1000.0);
+                        } else if (searchChoice != 3) {
+                            System.out.println("❌ Movie not found!");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("❌ Invalid input! Please try again.");
+                        sc.nextLine();
                     }
                     break;
 
@@ -198,21 +225,56 @@ public class App {
                     break;
 
                 case 10:
-                    System.out.print("Enter movie title: ");
-                    String title = sc.nextLine();
-                    System.out.print("Enter description: ");
-                    String description = sc.nextLine();
-                    System.out.print("Enter genre: ");
-                    String genre = sc.nextLine();
-                    System.out.print("Enter rating (0-10): ");
-                    double rating = sc.nextDouble();
-                    System.out.print("Enter year: ");
-                    int year = sc.nextInt();
-                    sc.nextLine();
+                    System.out.println("\n➕ Add New Movie");
+                    System.out.println("═══════════════");
                     
-                    Movie newMovie = new Movie(title, description, genre, rating, year);
-                    movieManager.addMovie(newMovie);
-                    System.out.println("Movie added successfully!");
+                    try {
+                        System.out.print("Enter movie title: ");
+                        String title = sc.nextLine().trim();
+                        if (title.isEmpty()) {
+                            System.out.println("❌ Title cannot be empty!");
+                            break;
+                        }
+                        
+                        System.out.print("Enter description: ");
+                        String description = sc.nextLine().trim();
+                        if (description.isEmpty()) {
+                            System.out.println("❌ Description cannot be empty!");
+                            break;
+                        }
+                        
+                        System.out.print("Enter genre: ");
+                        String genre = sc.nextLine().trim();
+                        if (genre.isEmpty()) {
+                            System.out.println("❌ Genre cannot be empty!");
+                            break;
+                        }
+                        
+                        System.out.print("Enter rating (0-10): ");
+                        double rating = sc.nextDouble();
+                        if (rating < 0 || rating > 10) {
+                            System.out.println("❌ Rating must be between 0 and 10!");
+                            sc.nextLine();
+                            break;
+                        }
+                        
+                        System.out.print("Enter year: ");
+                        int year = sc.nextInt();
+                        if (year < 1800 || year > 2030) {
+                            System.out.println("❌ Please enter a valid year!");
+                            sc.nextLine();
+                            break;
+                        }
+                        sc.nextLine();
+                        
+                        Movie newMovie = new Movie(title, description, genre, rating, year);
+                        movieManager.addMovie(newMovie);
+                        System.out.println("✅ Movie '" + title + "' added successfully!");
+                        
+                    } catch (Exception e) {
+                        System.out.println("❌ Invalid input! Please try again.");
+                        sc.nextLine();
+                    }
                     break;
 
                 case 11:
