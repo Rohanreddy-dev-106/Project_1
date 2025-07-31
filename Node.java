@@ -1,14 +1,14 @@
 public class Node<T,D,Y,J> {
         T title;
-        D decreption;
+        D description;
         Y year;
-        J joner;
-        Node next;
-        public Node(T title,D decreption,Y year,J joner){
+        J genre;
+        Node<T,D,Y,J> next;
+        public Node(T title,D description,Y year,J genre){
           this.title=title;
-          this.decreption=decreption;
+          this.description=description;
           this.year=year;
-          this.joner=joner;
+          this.genre=genre;
           this.next=null;
         }
 }
