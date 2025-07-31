@@ -235,7 +235,7 @@ public class MovieManager {
         return watchLaterQueue.poll();
     }
     
-    // Get top-rated movies using Priority Queue
+    // Display top-rated movies using a temporary Priority Queue
     public void displayTopRatedMovies() {
         PriorityQueue<Movie> topRated = new PriorityQueue<>((m1, m2) -> 
                                         Double.compare(m2.getRating(), m1.getRating()));
